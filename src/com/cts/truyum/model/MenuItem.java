@@ -1,7 +1,6 @@
 package com.cts.truyum.model;
 
 import java.util.*;
-import com.cts.truyum.util.*;
 
 public class MenuItem {
 	private long id;
@@ -72,7 +71,6 @@ public class MenuItem {
 		String	str="id="+this.id+" name="+this.name+" price="+this.price+" active="+this.active+" dateofLaunch="+this.dateOfLaunch+" category"+this.category+" freeDelivery="+this.freeDelivery;
 		return str;
 	}
-	@Override
 	public boolean equals(long id) {
 		// TODO Auto-generated method stub
 		if(id==this.id)

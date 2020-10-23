@@ -8,20 +8,20 @@ public class CartDaoCollectionImplTest {
 	
 	public static CartDao cartDao=new CartDaoCollectionImpl();
 	
-	public static void testAddCartItem() {
+	public static void testAddCartItem() throws CartEmptyException {
 		cartDao.removeCartItem(1, 1);
 		List<MenuItem> cartItemList;
 		cartItemList=cartDao.getAllCartItems(1);
 		cartItemList.forEach(System.out::println);
 	}
 	
-	public static void testGetAllCartItems() {
+	public static void testGetAllCartItems() throws CartEmptyException {
 		List<MenuItem> allCartItems;
 		allCartItems=cartDao.getAllCartItems(1);
 		allCartItems.forEach(System.out::println);
 	}
 	
-	public static void testRemoveCartItem() {
+	public static void testRemoveCartItem() throws CartEmptyException {
 		try {
 			cartDao.addCartItem(1, 1);
 		} catch (ParseException e) {
@@ -33,10 +33,25 @@ public class CartDaoCollectionImplTest {
 		cartItemList.forEach(System.out::println);
 	}
 	public static void main(String[] args) {
-		testAddCartItem();
+		try {
+			testAddCartItem();
+		} catch (CartEmptyException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		System.out.println();
-		testGetAllCartItems();
+		try {
+			testGetAllCartItems();
+		} catch (CartEmptyException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		System.out.println();
-		testRemoveCartItem();
+		try {
+			testRemoveCartItem();
+		} catch (CartEmptyException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

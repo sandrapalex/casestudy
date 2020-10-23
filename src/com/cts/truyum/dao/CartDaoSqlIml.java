@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import com.cts.truyum.model.*;
-import com.sun.tools.javac.main.Main.Result;
+
 
 public class CartDaoSqlIml implements CartDao{
 
@@ -67,17 +67,22 @@ public class CartDaoSqlIml implements CartDao{
 
 	@Override
 	public void removeCartItem(long userId, long menuItemId) {
-		Connection con=ConnectionHandler.getConnection();
-		String query="DELETE FROM CART WHERE ct_menu_id= ? AND ct_user_id=?";
-		PreparedStatement ps=con.prepareStatement(query);
-		ps.setLong(1, userId);
-		ps.setLong(2, menuItemId);
-		
-		if(ps.executeUpdate() >0)
-			System.out.println("Query Successful");
-		else
-			System.out.println("Query Unsuccessful");
-		
+		Connection con;
+		try {
+			con = ConnectionHandler.getConnection();
+			String query="DELETE FROM CART WHERE ct_menu_id= ? AND ct_user_id=?";
+			PreparedStatement ps=con.prepareStatement(query);
+			ps.setLong(1, userId);
+			ps.setLong(2, menuItemId);
+			
+			if(ps.executeUpdate() >0)
+				System.out.println("Query Successful");
+			else
+				System.out.println("Query Unsuccessful");
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }

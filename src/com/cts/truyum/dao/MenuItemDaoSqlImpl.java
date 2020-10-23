@@ -100,7 +100,6 @@ public class MenuItemDaoSqlImpl implements MenuItemDao{
 		return menuItem;
 	}
 
-	@Override
 	public void modifyMenuItem(MenuItem menuItem) {
 		// TODO Auto-generated method stub
 		try {

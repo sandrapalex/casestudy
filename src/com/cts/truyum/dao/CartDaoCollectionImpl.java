@@ -47,7 +47,7 @@ public class CartDaoCollectionImpl implements CartDao{
 	}
 
 	@Override
-	public List<MenuItem> getAllCartItems(long userId){
+	public List<MenuItem> getAllCartItems(long userId)throws CartEmptyException{
 		Cart cart = userCarts.get(userId);
 		List<MenuItem> allCartItems = cart.getMenuItemList();
 		if(allCartItems.isEmpty()) {
@@ -68,6 +68,7 @@ public class CartDaoCollectionImpl implements CartDao{
 		Cart cart=userCarts.get(userId);
 		List<MenuItem> allCartItems = cart.getMenuItemList();
 		MenuItem itemRemove=null;
+		
 		for(MenuItem item: allCartItems) {
 			if(item.getId()==menuItemId) {
 				itemRemove=item;
