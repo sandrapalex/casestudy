@@ -16,18 +16,19 @@ public class ConnectionHandler {
 	public static Connection getConnection() throws ClassNotFoundException, SQLException {
 	    try{
 			
-			FileInputStream fis = null;
-			fis = new FileInputStream("truYum/src/connection.properties");
+	    	FileInputStream fis = null;
+			fis = new FileInputStream("connection.properties");
 			props.load(fis);
 			
 			// load the Driver Class
-			Class.forName(props.getProperty("DB_DRIVER_CLASS"));
+			Class.forName(props.getProperty("driver"));
 
 			// create the connection now
-            con = DriverManager.getConnection(props.getProperty("DB_URL"),props.getProperty("DB_USERNAME"),props.getProperty("DB_PASSWORD"));
+            con = DriverManager.getConnection(props.getProperty("connection-url"),props.getProperty("user"),props.getProperty("password"));
 	    }
 	    catch(IOException e){
-	        e.printStackTrace();
+	    	System.out.println("Connection not established");
+	        System.out.println(e);
 	    }
 		return con;	
 	}
