@@ -8,10 +8,10 @@ public class CartDaoSqlImplTest {
 	
 	public static void testAddCartItem() throws ParseException {
 		CartDaoSqlIml cartDaoSqlIml=new CartDaoSqlIml();
-		cartDaoSqlIml.addCartItem(2, 2);
+		/*cartDaoSqlIml.addCartItem(2, 2);
 		cartDaoSqlIml.addCartItem(1, 2);
 		cartDaoSqlIml.addCartItem(2, 2);
-		cartDaoSqlIml.addCartItem(2, 3);
+		cartDaoSqlIml.addCartItem(2, 3);*/
 		cartDaoSqlIml.addCartItem(2, 4);
 	}
 	public static void testGetAllCartitem() {

@@ -17,10 +17,11 @@ public class CartDaoSqlIml implements CartDao{
 	public void addCartItem(long userId, long menuItemId) throws ParseException {
 		try {
 			Connection con=ConnectionHandler.getConnection();
-			String query="INSERT INTO CART(ct_user_id,ct_menu_id) VALUES(?, ?)";
+			String query="INSERT INTO CART(cart_id,ct_user_id,ct_menu_id) VALUES(?, ?, ?)";
 			PreparedStatement ps=con.prepareStatement(query);
-			ps.setLong(1, userId);
-			ps.setLong(2, menuItemId);
+			ps.setLong(1, 1);
+			ps.setLong(2, userId);
+			ps.setLong(3, menuItemId);
 			if(ps.executeUpdate() >0)
 				System.out.println("Query Successful");
 			else
@@ -49,10 +50,10 @@ public class CartDaoSqlIml implements CartDao{
 				String name=rslt.getString(2);
 				float price=rslt.getFloat(3);
 				total=total+price;
-				boolean active=rslt.getInt(4)==1;
+				boolean active=rslt.getBoolean(4);
 				Date dateOfLaunch=rslt.getDate(5);
 				String category=rslt.getString(6);
-				boolean freeDelivery=rslt.getInt(7)==1;
+				boolean freeDelivery=rslt.getBoolean(7);
 				MenuItem item=new MenuItem(id, name, price, active, dateOfLaunch, category, freeDelivery);
 				menuItemList.add(item);
 			}

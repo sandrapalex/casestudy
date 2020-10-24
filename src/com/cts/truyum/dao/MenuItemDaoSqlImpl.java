@@ -10,8 +10,6 @@ import java.util.Date;
 import java.util.List;
 import com.cts.truyum.model.*;
 
-import MenuItemDao;
-
 public class MenuItemDaoSqlImpl implements MenuItemDao{
 	
 	public static PreparedStatement ps=null;
@@ -81,18 +79,20 @@ public class MenuItemDaoSqlImpl implements MenuItemDao{
 		try {
 			Connection con=ConnectionHandler.getConnection();
 			String query = "SELECT * FROM MENU_ITEMS WHERE id=?";
+			
 			ps=con.prepareStatement(query);
+			ps.setLong(1, menuItemId);
 			ResultSet rslt=ps.executeQuery();
 			
 			while(rslt.next()) {
 				long id=rslt.getLong(1);
 				String name=rslt.getString(2);
 				float price=rslt.getFloat(3);
-				boolean active=rslt.getInt(4)==1;
+				boolean active=rslt.getBoolean(4);
 				Date dateOfLaunch=rslt.getDate(5);
 				String category=rslt.getString(6);
-				boolean freeDelivery=rslt.getInt(7)==1;
-				MenuItem item=new MenuItem(id, name, price, active, dateOfLaunch, category, freeDelivery);
+				boolean freeDelivery=rslt.getBoolean(7);
+				menuItem=new MenuItem(id, name, price, active, dateOfLaunch, category, freeDelivery);
 				break;
 			}
 		} catch (ClassNotFoundException | SQLException e) {
@@ -106,7 +106,7 @@ public class MenuItemDaoSqlImpl implements MenuItemDao{
 		// TODO Auto-generated method stub
 		try {
 			Connection con=ConnectionHandler.getConnection();
-			String query="UPDATE MENU_ITEMS SET item_name=?, price=?, active=?, dateoflaunch=?, categroy=?, freedelivery=? WHERE id=?";
+			String query="UPDATE MENU_ITEMS SET item_name=?, price=?, active=?, date_of_launch=?, category=?, free_delivery=? WHERE id=?";
 			SimpleDateFormat format=new SimpleDateFormat("yyyy-mm-dd");
 			java.util.Date date =java.sql.Date.valueOf(format.format(menuItem.getDateOfLaunch()));
 			ps=con.prepareStatement(query);

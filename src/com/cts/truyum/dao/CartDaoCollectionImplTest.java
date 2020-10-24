@@ -11,7 +11,7 @@ public class CartDaoCollectionImplTest {
 	public static void testAddCartItem() throws CartEmptyException, ParseException {
 		List<MenuItem> cartItemList;
 		cartDao.addCartItem(1, 4);
-		cartDao.addCartItem(2, 3);
+		//cartDao.addCartItem(2, 3);
 		cartItemList=cartDao.getAllCartItems(1);
 		cartItemList.forEach(System.out::println);
 	}
