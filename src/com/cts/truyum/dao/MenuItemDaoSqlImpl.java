@@ -10,6 +10,8 @@ import java.util.Date;
 import java.util.List;
 import com.cts.truyum.model.*;
 
+import MenuItemDao;
+
 public class MenuItemDaoSqlImpl implements MenuItemDao{
 	
 	public static PreparedStatement ps=null;
@@ -50,7 +52,7 @@ public class MenuItemDaoSqlImpl implements MenuItemDao{
 		List<MenuItem> menuItemList = new ArrayList<>();
 		try {
 			Connection con=ConnectionHandler.getConnection();
-			String query="SELECT * FROM MENU_ITEMS WHERE active=TRUE AND dateofLaunch < now()";
+			String query="SELECT * FROM MENU_ITEMS WHERE active=TRUE AND date_of_launch < now()";
 			ps=con.prepareStatement(query);
 			ResultSet rslt=ps.executeQuery();
 			
