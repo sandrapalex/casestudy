@@ -19,7 +19,7 @@ public class CartDaoSqlImplTest {
 		CartDaoSqlIml cartDaoSqlIml=new CartDaoSqlIml();
 		List<MenuItem> menuItemList=cartDaoSqlIml.getAllCartItems(user_id);
 		for(MenuItem item: menuItemList)
-			System.out.println(item);
+			System.out.println("Adding to:"+item);
 	}
 	
 	public static void testRemoveCartItem() {
@@ -27,7 +27,7 @@ public class CartDaoSqlImplTest {
 		long userId=1;
 		System.out.println("\n Before Removing");
 		for(MenuItem item : cartDaoSqlIml.getAllCartItems(userId)) {
-			System.out.println(item);
+			System.out.println("Item:"+item);
 		}
 		long menuItemId=1;
 		cartDaoSqlIml.removeCartItem(userId, menuItemId);

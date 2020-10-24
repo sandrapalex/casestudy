@@ -27,10 +27,10 @@ public class MenuItemDaoSqlImpl implements MenuItemDao{
 				long id=rslt.getLong(1);
 				String name=rslt.getString(2);
 				float price=rslt.getFloat(3);
-				boolean active=rslt.getInt(4)==1;
+				boolean active=rslt.getBoolean(4);
 				Date dateOfLaunch=rslt.getDate(5);
 				String category=rslt.getString(6);
-				boolean freeDelivery=rslt.getInt(7)==1;
+				boolean freeDelivery=rslt.getBoolean(7);
 				MenuItem item=new MenuItem(id, name, price, active, dateOfLaunch, category, freeDelivery);
 				menuItemList.add(item);
 			}
@@ -50,7 +50,7 @@ public class MenuItemDaoSqlImpl implements MenuItemDao{
 		List<MenuItem> menuItemList = new ArrayList<>();
 		try {
 			Connection con=ConnectionHandler.getConnection();
-			String query="SELECT * FROM MENU_ITEMS WHERE active=TRUE AND dateOfLaunch < now()";
+			String query="SELECT * FROM MENU_ITEMS WHERE active=TRUE AND dateofLaunch < now()";
 			ps=con.prepareStatement(query);
 			ResultSet rslt=ps.executeQuery();
 			

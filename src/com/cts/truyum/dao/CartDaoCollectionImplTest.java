@@ -8,9 +8,10 @@ public class CartDaoCollectionImplTest {
 	
 	public static CartDao cartDao=new CartDaoCollectionImpl();
 	
-	public static void testAddCartItem() throws CartEmptyException {
-		cartDao.removeCartItem(1, 1);
+	public static void testAddCartItem() throws CartEmptyException, ParseException {
 		List<MenuItem> cartItemList;
+		cartDao.addCartItem(1, 4);
+		cartDao.addCartItem(2, 3);
 		cartItemList=cartDao.getAllCartItems(1);
 		cartItemList.forEach(System.out::println);
 	}
@@ -22,17 +23,12 @@ public class CartDaoCollectionImplTest {
 	}
 	
 	public static void testRemoveCartItem() throws CartEmptyException {
-		try {
-			cartDao.addCartItem(1, 1);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		List<MenuItem> cartItemList;
+		cartDao.removeCartItem(1, 4);
 		cartItemList=cartDao.getAllCartItems(1);
 		cartItemList.forEach(System.out::println);
 	}
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 		try {
 			testAddCartItem();
 		} catch (CartEmptyException e) {
